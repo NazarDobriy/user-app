@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  background-image: url("../../assets/home.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: calc(100vh - 76px);
+  color: #FFFFFF;
+  gap: 18px;
+}
+
+.title {
+  font-size: 64px;
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  width: 80%;
+}
+
+.description {
+  font-size: 24px;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  width: 60%;
+}

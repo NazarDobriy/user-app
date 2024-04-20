@@ -1,0 +1,26 @@
+.btn {
+  height: 44px;
+  width: 160px;
+  border: 1px solid #b29f7e;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+}
+
+.primary {
+  color: #b29f7e;
+  background-color: transparent;
+}
+
+.notPrimary {
+  color: white;
+  background-color: #b29f7e;
+}
+
+.primary:hover {
+  color: white;
+  background-color: #b29f7e;
+  transition: all 150ms ease;
+}
