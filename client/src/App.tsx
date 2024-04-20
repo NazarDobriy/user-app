@@ -1,9 +1,12 @@
 import { FC } from "react";
+import Home from "./pages/home/Home";
+import Navbar from "./components/navbar/Navbar";
 
 const App: FC = () => {
   return (
     <div className="App">
-      Hello
+      <Navbar />
+      <Home />
     </div>
   );
 }
