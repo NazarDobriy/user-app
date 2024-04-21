@@ -7,7 +7,7 @@ export class DealController {
   constructor(private dealService: DealService) {}
 
   @Get()
-  getAll(): Promise<IDeal[]> {
+  getAll(): IDeal[] {
     return this.dealService.getAll();
   }
 }
