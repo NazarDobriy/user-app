@@ -6,8 +6,8 @@ import { RouteNames } from "../../router";
 import AuthForm from "../../components/auth-form/AuthForm";
 
 const Auth: FC = () => {
-  const location = useLocation();
-  const isLogin = location.pathname === RouteNames.LOGIN;
+  const { pathname } = useLocation();
+  const isLogin = pathname === RouteNames.LOGIN;
 
   return (
     <section className={classes.container}>
@@ -16,14 +16,23 @@ const Auth: FC = () => {
         <div className={classes["form-container"]}>
           <h3 className={classes.title}>{isLogin ? "Login" : "Sign Up"}</h3>
           <AuthForm isLogin={isLogin}></AuthForm>
-          {isLogin && (
-            <h5 className={classes.question}>
-              Don't have account?
-              <NavLink to={RouteNames.SIGN_UP}>
-                <span className={classes.hint}>Sing Up</span>
-              </NavLink>
-            </h5>
-          )}
+          <h5 className={classes.question}>
+            {isLogin ? (
+              <section>
+                Don't have an account?{" "}
+                <NavLink to={RouteNames.SIGN_UP}>
+                  <span className={classes.hint}>Sign Up</span>
+                </NavLink>
+              </section>
+            ) : (
+              <section>
+                Have you already created account?{" "}
+                <NavLink to={RouteNames.LOGIN}>
+                  <span className={classes.hint}>Sing In</span>
+                </NavLink>
+              </section>
+            )}
+          </h5>
         </div>
       </div>
     </section>

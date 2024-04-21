@@ -1,7 +1,16 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import Button from "../UI/button/Button";
 import classes from "./AuthForm.module.css";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import {
+  createUser,
+  loginUser,
+  setIsAuth
+} from "../../store/reducers/ActionCreators";
+import { IUser } from "../../models/User";
+import { useNavigate } from "react-router-dom";
+import { RouteNames } from "../../router";
 
 interface AuthFormProps {
   isLogin: boolean;
@@ -20,13 +29,39 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin = true }) => {
     reset
   } = useForm<FormData>();
 
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { error, user } = useAppSelector((state) => state.authReducer);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log("Email submitted:", data);
+    const currentUser: IUser = {
+      email: data.email,
+      password: data.password
+    };
+
+    isLogin
+      ? dispatch(loginUser(currentUser))
+      : dispatch(createUser(currentUser));
+
+    if (user) {
+      isLogin ? dispatch(setIsAuth(true)) : navigate(RouteNames.LOGIN);
+    }
   };
 
   useEffect(() => {
     reset();
-  }, [isLogin, reset]);
+    if (error) {
+      setErrorMessage(error);
+    }
+  }, [isLogin, reset, error]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      alert(errorMessage);
+      setErrorMessage(null);
+    }
+  }, [errorMessage]);
 
   return (
     <form className={classes.container} onSubmit={handleSubmit(onSubmit)}>
