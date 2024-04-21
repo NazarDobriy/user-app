@@ -2,8 +2,9 @@
   display: flex;
   justify-content: end;
   align-items: center;
-  padding: 16px 48px;
+  padding: 0 48px;
   background-color: #172234;
+  height: 76px;
 }
 
 .btns {

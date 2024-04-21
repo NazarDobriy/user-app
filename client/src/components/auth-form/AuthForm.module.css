@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-size: 14px;
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.input {
+  outline: none;
+  border: 2px solid transparent;
+  width: 100%;
+  padding: 16px 24px;
+  background-color: #E0E0E0;
+  margin-top: 2px;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.warn {
+  font-size: 14px;
+  color: red;
+  height: 16px;
+}

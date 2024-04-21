@@ -1,21 +1,17 @@
-import { FC, ReactNode } from "react";
+import { CSSProperties, FC, ReactNode } from "react";
 import classes from "./Button.module.css";
 
 interface ButtonProps {
   children: ReactNode;
   isPrimary?: boolean;
-  clickHandler?: () => void;
+  style?: CSSProperties;
 }
 
-const Button: FC<ButtonProps> = ({
-  children,
-  clickHandler,
-  isPrimary = true
-}) => {
-  const buttonClass = isPrimary ? classes.primary : classes.notPrimary;
+const Button: FC<ButtonProps> = ({ children, style, isPrimary = true }) => {
+  const buttonClass = isPrimary ? classes.primary : classes["not-primary"];
 
   return (
-    <button className={`${classes.btn} ${buttonClass}`} onClick={clickHandler}>
+    <button className={`${classes.btn} ${buttonClass}`} style={style}>
       {children}
     </button>
   );
