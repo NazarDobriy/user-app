@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
-import { $host } from "../../http";
-import { IUser } from "../../models/User";
-import { AppDispatch } from "../store";
+import { $host } from "../../../http";
+import { IUser } from "../../../models/User";
+import { AppDispatch } from "../../store";
 import { authSlice } from "./AuthSlice";
 
 const USER_API_PATH = "api/user";

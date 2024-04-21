@@ -7,7 +7,7 @@ import {
   createUser,
   loginUser,
   setIsAuth
-} from "../../store/reducers/ActionCreators";
+} from "../../store/reducers/auth/ActionCreators";
 import { IUser } from "../../models/User";
 import { useNavigate } from "react-router-dom";
 import { RouteNames } from "../../router";
