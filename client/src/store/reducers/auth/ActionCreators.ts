@@ -37,6 +37,10 @@ export const loginUser = (user: IUser) => async (dispatch: AppDispatch) => {
       ...user
     });
     dispatch(authSlice.actions.loginUserSuccess(response.data));
+    
+    localStorage.setItem("isAuth", "true");
+    localStorage.setItem("user", JSON.stringify(response.data));
+
   } catch (error) {
     dispatch(
       authSlice.actions.loginUserFailure(
@@ -50,4 +54,8 @@ export const loginUser = (user: IUser) => async (dispatch: AppDispatch) => {
 
 export const clearUser = () => async (dispatch: AppDispatch) => {
   dispatch(authSlice.actions.clearUser());
+}
+
+export const setUser = (user: IUser) => async (dispatch: AppDispatch) => {
+  dispatch(authSlice.actions.setUser(user));
 }
