@@ -11,6 +11,7 @@ const AppRouter: FC = () => {
       {authRoutes.map((route) => (
         <Route key={route.path} path={route.path} Component={route.component} />
       ))}
+      <Route path="*" element={<Navigate to={RouteNames.HOME} />} />
     </Routes>
   ) : (
     <Routes>
