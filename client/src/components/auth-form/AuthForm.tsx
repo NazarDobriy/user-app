@@ -4,6 +4,7 @@ import classes from "./AuthForm.module.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import {
+  clearUser,
   createUser,
   loginUser
 } from "../../store/reducers/auth/ActionCreators";
@@ -30,7 +31,9 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin = true }) => {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { error, user } = useAppSelector((state) => state.authReducer);
+  const { error, user, isLoading } = useAppSelector(
+    (state) => state.authReducer
+  );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
@@ -49,9 +52,14 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin = true }) => {
   useEffect(() => {
     if (!isLogin && user) {
       navigate(RouteNames.LOGIN);
-      reset();
     }
-  }, [isLogin, navigate, reset, user]);
+
+    if (!isLogin) {
+      dispatch(clearUser());
+    }
+
+    reset();
+  }, [isLogin, navigate, reset, user, dispatch]);
 
   useEffect(() => {
     reset();
@@ -116,7 +124,7 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin = true }) => {
         </div>
       </label>
 
-      <Button isPrimary={false} style={{ width: "100%" }}>
+      <Button isPrimary={false} isLoading={isLoading} style={{ width: "100%" }}>
         {isLogin ? "Sing In" : "Sign Up"}
       </Button>
     </form>
