@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import Navbar from "./components/navbar/Navbar";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import AppRouter from "./components/AppRouter";
 import { useAppDispatch } from "./hooks/redux";
 import { setIsAuth, setUser } from "./store/reducers/auth/ActionCreators";
@@ -22,10 +22,10 @@ const App: FC = () => {
   }, [dispatch]);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Navbar />
       <AppRouter />
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
