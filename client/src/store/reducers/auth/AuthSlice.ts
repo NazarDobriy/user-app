@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { IUser } from "../../models/User";
+import { IUser } from "../../../models/User";
 
 interface AuthState {
   isAuth: boolean;
@@ -21,6 +21,7 @@ export const authSlice = createSlice({
   reducers: {
     setIsAuth(state, action: PayloadAction<boolean>) {
       state.isAuth = action.payload;
+      state.user = null;
     },
     createUser(state) {
       state.isLoading = true;
@@ -28,6 +29,12 @@ export const authSlice = createSlice({
     },
     createUserSuccess(state, action: PayloadAction<IUser>) {
       state.isLoading = false;
+      state.user = action.payload;
+    },
+    clearUser(state) {
+      state.user = null;
+    },
+    setUser(state, action: PayloadAction<IUser>) {
       state.user = action.payload;
     },
     createUserFailure(state, action: PayloadAction<string>) {
@@ -41,6 +48,7 @@ export const authSlice = createSlice({
     loginUserSuccess(state, action: PayloadAction<IUser>) {
       state.isLoading = false;
       state.user = action.payload;
+      state.isAuth = true;
     },
     loginUserFailure(state, action: PayloadAction<string>) {
       state.isLoading = false;

@@ -4,10 +4,10 @@ import classes from "./AuthForm.module.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import {
+  clearUser,
   createUser,
-  loginUser,
-  setIsAuth
-} from "../../store/reducers/ActionCreators";
+  loginUser
+} from "../../store/reducers/auth/ActionCreators";
 import { IUser } from "../../models/User";
 import { useNavigate } from "react-router-dom";
 import { RouteNames } from "../../router";
@@ -19,6 +19,7 @@ interface AuthFormProps {
 interface FormData {
   email: string;
   password: string;
+  username?: string;
 }
 
 const AuthForm: FC<AuthFormProps> = ({ isLogin = true }) => {
@@ -31,30 +32,49 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin = true }) => {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { error, user } = useAppSelector((state) => state.authReducer);
+  const { error, user, isLoading } = useAppSelector(
+    (state) => state.authReducer
+  );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    const currentUser: IUser = {
+    let currentUser: IUser = {
       email: data.email,
       password: data.password
     };
 
-    isLogin
-      ? dispatch(loginUser(currentUser))
-      : dispatch(createUser(currentUser));
+    if (data.username) {
+      currentUser = {
+        ...currentUser,
+        username: data.username
+      };
+    }
 
-    if (user) {
-      isLogin ? dispatch(setIsAuth(true)) : navigate(RouteNames.LOGIN);
+    if (isLogin) {
+      dispatch(loginUser(currentUser));
+    } else {
+      dispatch(createUser(currentUser));
     }
   };
+
+  useEffect(() => {
+    if (!isLogin && user) {
+      navigate(RouteNames.LOGIN);
+    }
+
+    if (!isLogin) {
+      dispatch(clearUser());
+    }
+
+    reset();
+  }, [isLogin, navigate, reset, user, dispatch]);
 
   useEffect(() => {
     reset();
     if (error) {
       setErrorMessage(error);
     }
-  }, [isLogin, reset, error]);
+  }, [reset, error]);
 
   useEffect(() => {
     if (errorMessage) {
@@ -65,6 +85,30 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin = true }) => {
 
   return (
     <form className={classes.container} onSubmit={handleSubmit(onSubmit)}>
+      {!isLogin && (
+        <label className={classes["w-full"]}>
+          <h4 className={classes.title}>Username</h4>
+          <input
+            className={classes.input}
+            type="text"
+            placeholder="Username"
+            style={errors.username && { borderColor: "red" }}
+            {...register("username", {
+              required: true,
+              minLength: 5
+            })}
+          />
+          <div className={classes.warn}>
+            {errors.username &&
+              errors.username.type === "required" &&
+              "Username is required"}
+            {errors.username &&
+              errors.username.type === "minLength" &&
+              "Min length is 5"}
+          </div>
+        </label>
+      )}
+
       <label className={classes["w-full"]}>
         <h4 className={classes.title}>Email</h4>
         <input
@@ -112,7 +156,7 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin = true }) => {
         </div>
       </label>
 
-      <Button isPrimary={false} style={{ width: "100%" }}>
+      <Button isPrimary={false} isLoading={isLoading} style={{ width: "100%" }}>
         {isLogin ? "Sing In" : "Sign Up"}
       </Button>
     </form>
