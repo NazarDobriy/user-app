@@ -10,6 +10,7 @@ import {
 interface UserCreationAttr {
   email: string;
   password: string;
+  username: string;
 }
 
 @Table({ tableName: 'User' })
@@ -21,6 +22,12 @@ export class User extends Model<User, UserCreationAttr> {
     primaryKey: true
   })
   id: number;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false
+  })
+  username: string;
 
   @Column({
     type: DataType.STRING,
