@@ -19,6 +19,7 @@ interface AuthFormProps {
 interface FormData {
   email: string;
   password: string;
+  username?: string;
 }
 
 const AuthForm: FC<AuthFormProps> = ({ isLogin = true }) => {
@@ -37,10 +38,17 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin = true }) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    const currentUser: IUser = {
+    let currentUser: IUser = {
       email: data.email,
       password: data.password
     };
+
+    if (data.username) {
+      currentUser = {
+        ...currentUser,
+        username: data.username
+      };
+    }
 
     if (isLogin) {
       dispatch(loginUser(currentUser));
@@ -77,6 +85,30 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin = true }) => {
 
   return (
     <form className={classes.container} onSubmit={handleSubmit(onSubmit)}>
+      {!isLogin && (
+        <label className={classes["w-full"]}>
+          <h4 className={classes.title}>Username</h4>
+          <input
+            className={classes.input}
+            type="text"
+            placeholder="Username"
+            style={errors.username && { borderColor: "red" }}
+            {...register("username", {
+              required: true,
+              minLength: 5
+            })}
+          />
+          <div className={classes.warn}>
+            {errors.username &&
+              errors.username.type === "required" &&
+              "Username is required"}
+            {errors.username &&
+              errors.username.type === "minLength" &&
+              "Min length is 5"}
+          </div>
+        </label>
+      )}
+
       <label className={classes["w-full"]}>
         <h4 className={classes.title}>Email</h4>
         <input
