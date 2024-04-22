@@ -10,11 +10,15 @@ export interface IRoute {
 export enum RouteNames {
   LOGIN = "/login",
   SIGN_UP = "/sign-up",
-  HOME = "/",
-  DEALS = "/deals"
+  HOME = "/"
 }
 
-export const authRoutes: IRoute[] = [];
+export const authRoutes: IRoute[] = [
+  {
+    path: RouteNames.HOME,
+    component: Home
+  }
+];
 
 export const publicRoutes: IRoute[] = [
   {
