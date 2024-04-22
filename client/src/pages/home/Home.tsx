@@ -11,9 +11,7 @@ const Home: FC = () => {
   const dispatch = useAppDispatch();
   const { isAuth } = useAppSelector((state) => state.authReducer);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const { deals, error } = useAppSelector(
-    (state) => state.dealReducer
-  );
+  const { deals, error } = useAppSelector((state) => state.dealReducer);
 
   useEffect(() => {
     dispatch(getDeals());
