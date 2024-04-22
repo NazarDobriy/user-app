@@ -9,11 +9,16 @@ import { setIsAuth } from "../../store/reducers/auth/ActionCreators";
 const Navbar: FC = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
-  const { isAuth } = useAppSelector((state) => state.authReducer);
+  const { isAuth, user } = useAppSelector((state) => state.authReducer);
   const isAuthPage = pathname === RouteNames.LOGIN || pathname === RouteNames.SIGN_UP;
 
   return (
-    <nav className={classes.nav}>
+    <nav
+      className={classes.nav}
+      style={{ justifyContent: isAuth ? "space-between" : "end" }}
+    >
+      {isAuth && <div className={classes.title}>Hello, {user?.username}!</div>}
+
       {!isAuthPage &&
         (isAuth ? (
           <Button clickHandler={() => dispatch(setIsAuth(false))}>
