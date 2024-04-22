@@ -47,3 +47,7 @@ export const loginUser = (user: IUser) => async (dispatch: AppDispatch) => {
     );
   }
 };
+
+export const clearUser = () => async (dispatch: AppDispatch) => {
+  dispatch(authSlice.actions.clearUser());
+}
