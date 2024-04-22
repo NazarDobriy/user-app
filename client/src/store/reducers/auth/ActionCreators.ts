@@ -7,6 +7,11 @@ import { authSlice } from "./AuthSlice";
 const USER_API_PATH = "api/user";
 
 export const setIsAuth = (isAuth: boolean) => (dispatch: AppDispatch) => {
+  if (!isAuth) {
+    localStorage.removeItem("isAuth");
+    localStorage.removeItem("user");
+  }
+
   dispatch(authSlice.actions.setIsAuth(isAuth));
 };
 
