@@ -34,6 +34,9 @@ export const authSlice = createSlice({
     clearUser(state) {
       state.user = null;
     },
+    setUser(state, action: PayloadAction<IUser>) {
+      state.user = action.payload;
+    },
     createUserFailure(state, action: PayloadAction<string>) {
       state.isLoading = false;
       state.error = action.payload;
