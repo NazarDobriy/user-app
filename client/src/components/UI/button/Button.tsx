@@ -5,13 +5,23 @@ interface ButtonProps {
   children: ReactNode;
   isPrimary?: boolean;
   style?: CSSProperties;
+  clickHandler?: () => void;
 }
 
-const Button: FC<ButtonProps> = ({ children, style, isPrimary = true }) => {
+const Button: FC<ButtonProps> = ({
+  children,
+  style,
+  clickHandler,
+  isPrimary = true
+}) => {
   const buttonClass = isPrimary ? classes.primary : classes["not-primary"];
 
   return (
-    <button className={`${classes.btn} ${buttonClass}`} style={style}>
+    <button
+      className={`${classes.btn} ${buttonClass}`}
+      style={style}
+      onClick={clickHandler}
+    >
       {children}
     </button>
   );
