@@ -1,18 +1,21 @@
 import { CSSProperties, FC, ReactNode } from "react";
 import classes from "./Button.module.css";
+import Loader from "../loader/Loader";
 
 interface ButtonProps {
   children: ReactNode;
   isPrimary?: boolean;
   style?: CSSProperties;
   clickHandler?: () => void;
+  isLoading?: boolean;
 }
 
 const Button: FC<ButtonProps> = ({
   children,
   style,
   clickHandler,
-  isPrimary = true
+  isPrimary = true,
+  isLoading = false
 }) => {
   const buttonClass = isPrimary ? classes.primary : classes["not-primary"];
 
@@ -20,9 +23,13 @@ const Button: FC<ButtonProps> = ({
     <button
       className={`${classes.btn} ${buttonClass}`}
       style={style}
+      disabled={isLoading}
       onClick={clickHandler}
     >
-      {children}
+      <section className={classes.content}>
+        {isLoading && <Loader />}
+        {children}
+      </section>
     </button>
   );
 };
