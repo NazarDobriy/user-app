@@ -26,3 +26,21 @@
   font-weight: 400;
   width: 60%;
 }
+
+.deals {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 45px 0;
+}
+
+.subtitle {
+  font-size: 28px;
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  color: #B29F7E;
+  margin-top: 40px;
+  margin-left: 55px;
+}
