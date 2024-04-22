@@ -11,7 +11,7 @@ const Auth: FC = () => {
 
   return (
     <section className={classes.container}>
-      <img src={authPicture} alt="City" width="60%" />
+      <img src={authPicture} alt="City" className={classes.img} />
       <div className={classes.form}>
         <div className={classes["form-container"]}>
           <h3 className={classes.title}>{isLogin ? "Login" : "Sign Up"}</h3>

@@ -34,3 +34,27 @@
 .hint {
   color: #b29f7e;
 }
+
+.img {
+  width: 60%;
+}
+
+@media (width <= 1024px) {
+  .img {
+    width: 50%;
+  }
+
+  .form {
+    width: 50%;
+  }
+}
+
+@media (width <= 768px) {
+  .img {
+    display: none;
+  }
+
+  .form {
+    width: 100%;
+  }
+}
