@@ -5,8 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import {
   createUser,
-  loginUser,
-  setIsAuth
+  loginUser
 } from "../../store/reducers/auth/ActionCreators";
 import { IUser } from "../../models/User";
 import { useNavigate } from "react-router-dom";
@@ -40,21 +39,26 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin = true }) => {
       password: data.password
     };
 
-    isLogin
-      ? dispatch(loginUser(currentUser))
-      : dispatch(createUser(currentUser));
-
-    if (user) {
-      isLogin ? dispatch(setIsAuth(true)) : navigate(RouteNames.LOGIN);
+    if (isLogin) {
+      dispatch(loginUser(currentUser));
+    } else {
+      dispatch(createUser(currentUser));
     }
   };
+
+  useEffect(() => {
+    if (!isLogin && user) {
+      navigate(RouteNames.LOGIN);
+      reset();
+    }
+  }, [isLogin, navigate, reset, user]);
 
   useEffect(() => {
     reset();
     if (error) {
       setErrorMessage(error);
     }
-  }, [isLogin, reset, error]);
+  }, [reset, error]);
 
   useEffect(() => {
     if (errorMessage) {
