@@ -9,7 +9,7 @@ export const mockDeals: IDeal[] = [
     yield: 9.25,
     sold: 75,
     daysLeft: 150,
-    imgPath: 'http://localhost:5000/images/img_1.png'
+    imgPath: 'https://user-app-production.up.railway.app/images/img_1.png'
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ export const mockDeals: IDeal[] = [
     yield: 9.25,
     sold: 75,
     daysLeft: 150,
-    imgPath: 'http://localhost:5000/images/img_2.png'
+    imgPath: 'https://user-app-production.up.railway.app/images/img_2.png'
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ export const mockDeals: IDeal[] = [
     yield: 9.25,
     sold: 75,
     daysLeft: 150,
-    imgPath: 'http://localhost:5000/images/img_3.png'
+    imgPath: 'https://user-app-production.up.railway.app/images/img_3.png'
   },
   {
     id: 4,
@@ -39,6 +39,6 @@ export const mockDeals: IDeal[] = [
     yield: 9.25,
     sold: 75,
     daysLeft: 150,
-    imgPath: 'http://localhost:5000/images/img_4.png'
+    imgPath: 'https://user-app-production.up.railway.app/images/img_4.png'
   }
 ];
