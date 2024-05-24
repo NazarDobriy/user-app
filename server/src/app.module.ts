@@ -1,12 +1,13 @@
+import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { UserModule } from './user/user.module';
-import { User } from './user/user.model';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
+
+import { UserModule } from './user/user.module';
 import { DealModule } from './deal/deal.module';
 import { Deal } from './deal/deal.model';
+import { User } from './user/user.model';
 
 @Module({
   imports: [

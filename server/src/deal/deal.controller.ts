@@ -1,4 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
+
 import { DealService } from './deal.service';
 import { IDeal } from './types/deal.interface';
 

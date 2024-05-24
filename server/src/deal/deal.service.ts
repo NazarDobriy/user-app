@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+
 import { mockDeals } from './data/deal.mock';
 import { IDeal } from './types/deal.interface';
 
