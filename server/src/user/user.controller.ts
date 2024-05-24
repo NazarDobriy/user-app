@@ -3,6 +3,7 @@ import { Post, Body, Controller } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
 import { User } from './user.model';
+import { LoginDto } from './dto/login.dto';
 
 @Controller('user')
 export class UserController {
@@ -14,7 +15,7 @@ export class UserController {
   }
 
   @Post('/login')
-  async login(@Body() dto: UserDto): Promise<User> {
+  async login(@Body() dto: LoginDto): Promise<User> {
     return this.userService.login(dto);
   }
 }

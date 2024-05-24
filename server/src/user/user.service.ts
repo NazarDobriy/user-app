@@ -4,6 +4,7 @@ import { compare } from 'bcrypt';
 
 import { User } from './user.model';
 import { UserDto } from './dto/user.dto';
+import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class UserService {
@@ -25,7 +26,7 @@ export class UserService {
     return createdUser;
   }
 
-  async login(dto: UserDto): Promise<User> {
+  async login(dto: LoginDto): Promise<User> {
     const user = await this.userRepository.findOne({
       where: { email: dto.email }
     });
