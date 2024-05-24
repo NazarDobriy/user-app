@@ -2,8 +2,8 @@ import { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import Button from "../UI/button/Button";
 import classes from "./AuthForm.module.css";
+import Button from "components/UI/button/Button";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
 import {
   clearUser,
