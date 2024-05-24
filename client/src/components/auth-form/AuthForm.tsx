@@ -1,17 +1,18 @@
 import { FC, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { SubmitHandler, useForm } from "react-hook-form";
+
 import Button from "../UI/button/Button";
 import classes from "./AuthForm.module.css";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "@a-hooks/redux";
 import {
   clearUser,
   createUser,
   loginUser
-} from "../../store/reducers/auth/ActionCreators";
-import { IUser } from "../../models/User";
-import { useNavigate } from "react-router-dom";
-import { RouteNames } from "../../router";
-import useErrorMessage from "../../hooks/error";
+} from "@a-store/reducers/auth/ActionCreators";
+import { IUser } from "@a-models/User";
+import { RouteNames } from "@a-router/index";
+import useErrorMessage from "@a-hooks/error";
 
 interface AuthFormProps {
   isLogin: boolean;

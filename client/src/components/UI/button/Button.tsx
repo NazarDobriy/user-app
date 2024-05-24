@@ -1,4 +1,5 @@
 import { CSSProperties, FC, ReactNode } from "react";
+
 import classes from "./Button.module.css";
 import Loader from "../loader/Loader";
 

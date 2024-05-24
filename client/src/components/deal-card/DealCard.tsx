@@ -1,6 +1,7 @@
 import { FC } from "react";
-import { IDeal } from "../../models/Deal";
+
 import classes from "./DealCard.module.css";
+import { IDeal } from "@a-models/Deal";
 
 interface DealCardProps {
   deal: IDeal;

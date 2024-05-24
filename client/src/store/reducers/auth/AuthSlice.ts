@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { IUser } from "../../../models/User";
+
+import { IUser } from "@a-models/User";
 
 interface AuthState {
   isAuth: boolean;

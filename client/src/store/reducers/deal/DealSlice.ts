@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { IDeal } from "../../../models/Deal";
+
+import { IDeal } from "@a-models/Deal";
 
 interface DealState {
   deals: IDeal[];

@@ -1,8 +1,9 @@
 import { AxiosError } from "axios";
-import { $host } from "../../../http";
-import { IDeal } from "../../../models/Deal";
-import { AppDispatch } from "../../store";
+
 import { dealSlice } from "./DealSlice";
+import { $host } from "@a-http/index";
+import { IDeal } from "@a-models/Deal";
+import { AppDispatch } from "@a-store/store";
 
 const DEAL_API_PATH = "api/deal";
 
