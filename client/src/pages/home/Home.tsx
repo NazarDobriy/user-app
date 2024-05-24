@@ -6,12 +6,13 @@ import { RouteNames } from "../../router";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { getDeals } from "../../store/reducers/deal/ActionCreators";
 import DealCard from "../../components/deal-card/DealCard";
+import useErrorMessage from "../../hooks/error";
 
 const Home: FC = () => {
   const dispatch = useAppDispatch();
   const { isAuth } = useAppSelector((state) => state.authReducer);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { deals, error } = useAppSelector((state) => state.dealReducer);
+  const { setError } = useErrorMessage(null);
 
   useEffect(() => {
     dispatch(getDeals());
@@ -19,16 +20,9 @@ const Home: FC = () => {
 
   useEffect(() => {
     if (error) {
-      setErrorMessage(error);
+      setError(error);
     }
-  }, [error]);
-
-  useEffect(() => {
-    if (errorMessage) {
-      alert(errorMessage);
-      setErrorMessage(null);
-    }
-  }, [errorMessage]);
+  }, [error, setError]);
 
   return (
     <section>

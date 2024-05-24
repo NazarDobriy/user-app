@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import Button from "../UI/button/Button";
 import classes from "./AuthForm.module.css";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -11,6 +11,7 @@ import {
 import { IUser } from "../../models/User";
 import { useNavigate } from "react-router-dom";
 import { RouteNames } from "../../router";
+import useErrorMessage from "../../hooks/error";
 
 interface AuthFormProps {
   isLogin: boolean;
@@ -35,7 +36,7 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin = true }) => {
   const { error, user, isLoading } = useAppSelector(
     (state) => state.authReducer
   );
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const { setError } = useErrorMessage(null);
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     let currentUser: IUser = {
@@ -70,18 +71,10 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin = true }) => {
   }, [isLogin, navigate, reset, user, dispatch]);
 
   useEffect(() => {
-    reset();
     if (error) {
-      setErrorMessage(error);
+      setError(error);
     }
-  }, [reset, error]);
-
-  useEffect(() => {
-    if (errorMessage) {
-      alert(errorMessage);
-      setErrorMessage(null);
-    }
-  }, [errorMessage]);
+  }, [error, setError]);
 
   return (
     <form className={classes.container} onSubmit={handleSubmit(onSubmit)}>
