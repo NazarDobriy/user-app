@@ -4,15 +4,15 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import Button from "../UI/button/Button";
 import classes from "./AuthForm.module.css";
-import { useAppDispatch, useAppSelector } from "@a-hooks/redux";
+import { useAppDispatch, useAppSelector } from "hooks/redux";
 import {
   clearUser,
   createUser,
   loginUser
-} from "@a-store/reducers/auth/ActionCreators";
-import { IUser } from "@a-models/User";
-import { RouteNames } from "@a-router/index";
-import useErrorMessage from "@a-hooks/error";
+} from "store/reducers/auth/ActionCreators";
+import { IUser } from "models/User";
+import { RouteNames } from "router/index";
+import useErrorMessage from "hooks/error";
 
 interface AuthFormProps {
   isLogin: boolean;

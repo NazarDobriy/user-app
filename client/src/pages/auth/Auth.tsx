@@ -2,9 +2,9 @@ import { FC } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
 import classes from "./Auth.module.css";
-import authPicture from "@a-assets/auth.png";
-import { RouteNames } from "@a-router/index";
-import AuthForm from "@a-components/auth-form/AuthForm";
+import authPicture from "assets/auth.png";
+import { RouteNames } from "router/index";
+import AuthForm from "components/auth-form/AuthForm";
 
 const Auth: FC = () => {
   const { pathname } = useLocation();

@@ -1,9 +1,9 @@
 import { AxiosError } from "axios";
 
 import { authSlice } from "./AuthSlice";
-import { $host } from "@a-http/index";
-import { IUser } from "@a-models/User";
-import { AppDispatch } from "@a-store/store";
+import { $host } from "http/index";
+import { IUser } from "models/User";
+import { AppDispatch } from "store/store";
 
 const USER_API_PATH = "api/user";
 

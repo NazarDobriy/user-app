@@ -2,12 +2,12 @@ import { FC, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import classes from "./Home.module.css";
-import Button from "@a-components/UI/button/Button";
-import { RouteNames } from "@a-router/index";
-import { useAppDispatch, useAppSelector } from "@a-hooks/redux";
-import { getDeals } from "@a-store/reducers/deal/ActionCreators";
-import DealCard from "@a-components/deal-card/DealCard";
-import useErrorMessage from "@a-hooks/error";
+import Button from "components/UI/button/Button";
+import { RouteNames } from "router/index";
+import { useAppDispatch, useAppSelector } from "hooks/redux";
+import { getDeals } from "store/reducers/deal/ActionCreators";
+import DealCard from "components/deal-card/DealCard";
+import useErrorMessage from "hooks/error";
 
 const Home: FC = () => {
   const dispatch = useAppDispatch();

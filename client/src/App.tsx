@@ -1,10 +1,10 @@
 import { FC, useEffect } from "react";
 import { HashRouter } from "react-router-dom";
 
-import Navbar from "./components/navbar/Navbar";
-import AppRouter from "./components/AppRouter";
-import { useAppDispatch } from "./hooks/redux";
-import { setIsAuth, setUser } from "./store/reducers/auth/ActionCreators";
+import Navbar from "components/navbar/Navbar";
+import AppRouter from "components/AppRouter";
+import { useAppDispatch } from "hooks/redux";
+import { setIsAuth, setUser } from "store/reducers/auth/ActionCreators";
 
 const App: FC = () => {
   const dispatch = useAppDispatch();

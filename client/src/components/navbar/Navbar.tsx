@@ -3,9 +3,9 @@ import { NavLink, useLocation } from "react-router-dom";
 
 import classes from "./Navbar.module.css";
 import Button from "../UI/button/Button";
-import { RouteNames } from "@a-router/index";
-import { useAppDispatch, useAppSelector } from "@a-hooks/redux";
-import { setIsAuth } from "@a-store/reducers/auth/ActionCreators";
+import { RouteNames } from "router/index";
+import { useAppDispatch, useAppSelector } from "hooks/redux";
+import { setIsAuth } from "store/reducers/auth/ActionCreators";
 
 const Navbar: FC = () => {
   const dispatch = useAppDispatch();

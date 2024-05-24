@@ -1,7 +1,7 @@
 import { CSSProperties, FC, ReactNode } from "react";
 
 import classes from "./Button.module.css";
-import Loader from "../loader/Loader";
+import Loader from "components/UI/loader/Loader";
 
 interface ButtonProps {
   children: ReactNode;

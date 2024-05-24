@@ -1,6 +1,7 @@
 import { ComponentType } from "react";
-import Home from "../pages/home/Home";
-import Auth from "../pages/auth/Auth";
+
+import Home from "pages/home/Home";
+import Auth from "pages/auth/Auth";
 
 export interface IRoute {
   path: string;

@@ -1,32 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": "src",
-    "paths": {
-      "@a-asserts/*": [
-        "asserts/*"
-      ],
-      "@a-components/*": [
-        "components/*"
-      ],
-      "@a-hooks/*": [
-        "hooks/*"
-      ],
-      "@a-http/*": [
-        "http/*"
-      ],
-      "@a-models/*": [
-        "models/*"
-      ],
-      "@a-pages/*": [
-        "pages/*"
-      ],
-      "@a-router/*": [
-        "router/*"
-      ],
-      "@a-store/*": [
-        "store/*"
-      ],
-    },
     "target": "es5",
     "lib": [
       "dom",
