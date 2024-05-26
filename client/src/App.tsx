@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import Navbar from "components/navbar/Navbar";
 import AppRouter from "components/AppRouter";
@@ -23,10 +23,10 @@ const App: FC = () => {
   }, [dispatch]);
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Navbar />
       <AppRouter />
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
