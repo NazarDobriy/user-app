@@ -1,52 +1,37 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { compare } from 'bcrypt';
 
 import { User } from './user.model';
 import { UserDto } from './dto/user.dto';
-import { LoginDto } from './dto/login.dto';
+import { TokenService } from 'src/token/token.service';
+import { AuthUserResponse } from 'src/auth/response/auth-user.response';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel(User) private userRepository: typeof User) {}
+  constructor(
+    @InjectModel(User) private userRepository: typeof User,
+    private readonly tokenService: TokenService
+  ) {}
 
-  async create(dto: UserDto): Promise<User> {
-    const user = await this.userRepository.findOne({
-      where: { email: dto.email }
-    });
-
-    if (user) {
-      throw new HttpException(
-        'Email is already taken',
-        HttpStatus.UNPROCESSABLE_ENTITY
-      );
-    }
-
-    const createdUser = await this.userRepository.create(dto);
-    return createdUser;
+  async createUser(dto: UserDto): Promise<User> {
+    const user = await this.userRepository.create(dto);
+    return user;
   }
 
-  async login(dto: LoginDto): Promise<User> {
+  async publicUser(email: string): Promise<AuthUserResponse> {
     const user = await this.userRepository.findOne({
-      where: { email: dto.email }
+      where: { email },
+      attributes: { exclude: ['password'] }
     });
 
-    if (!user) {
-      throw new HttpException(
-        "User isn't found",
-        HttpStatus.UNPROCESSABLE_ENTITY
-      );
-    }
+    const token = await this.tokenService.generateJwtToken(user);
 
-    const isCorrectPassword = await compare(dto.password, user.password);
+    return { token };
+  }
 
-    if (!isCorrectPassword) {
-      throw new HttpException(
-        'Incorrect password',
-        HttpStatus.UNPROCESSABLE_ENTITY
-      );
-    }
-
-    return user;
+  async findUserByEmail(email: string): Promise<User> {
+    return this.userRepository.findOne({
+      where: { email }
+    });
   }
 }
