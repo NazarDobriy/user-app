@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 
-import { User } from './user.model';
+import { User } from './models/user.model';
 import { UserService } from './user.service';
-import { TokenModule } from 'src/token/token.module';
+import { TokenModule } from 'src/app/token/token.module';
 
 @Module({
   providers: [UserService],

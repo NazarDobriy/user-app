@@ -3,7 +3,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 
 import { DealController } from './deal.controller';
 import { DealService } from './deal.service';
-import { Deal } from './deal.model';
+import { Deal } from './models/deal.model';
 import { JwtStrategy } from 'src/strategy';
 
 @Module({

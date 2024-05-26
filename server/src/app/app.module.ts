@@ -6,11 +6,11 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 
 import { UserModule } from './user/user.module';
 import { DealModule } from './deal/deal.module';
-import { Deal } from './deal/deal.model';
-import { User } from './user/user.model';
+import { Deal } from './deal/models/deal.model';
+import { User } from './user/models/user.model';
 import { TokenModule } from './token/token.module';
 import { AuthModule } from './auth/auth.module';
-import configurations from './configurations';
+import configurations from '../configurations';
 
 @Module({
   imports: [

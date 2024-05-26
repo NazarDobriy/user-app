@@ -2,7 +2,7 @@ import { Controller, Get, UseGuards } from '@nestjs/common';
 
 import { DealService } from './deal.service';
 import { JwtAuthGuard } from 'src/guards/jwt-guard';
-import { Deal } from './deal.model';
+import { Deal } from './models/deal.model';
 
 @Controller('deal')
 export class DealController {

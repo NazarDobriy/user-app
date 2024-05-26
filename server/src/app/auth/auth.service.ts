@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { compare } from 'bcrypt';
 
-import { UserDto } from 'src/user/dto/user.dto';
-import { UserService } from 'src/user/user.service';
+import { UserDto } from 'src/app/user/dto/user.dto';
+import { UserService } from 'src/app/user/user.service';
 import { LoginDto } from './dto/login.dto';
 import { AppError } from 'src/common/errors';
 import { AuthUserResponse } from './response/auth-user.response';

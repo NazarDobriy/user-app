@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 
-import { User } from './user.model';
+import { User } from './models/user.model';
 import { UserDto } from './dto/user.dto';
-import { TokenService } from 'src/token/token.service';
-import { AuthUserResponse } from 'src/auth/response/auth-user.response';
+import { TokenService } from 'src/app/token/token.service';
+import { AuthUserResponse } from 'src/app/auth/response/auth-user.response';
 
 @Injectable()
 export class UserService {
