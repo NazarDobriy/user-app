@@ -24,11 +24,11 @@ export const authSlice = createSlice({
       state.isAuth = action.payload;
       state.user = null;
     },
-    createUser(state) {
+    registerUser(state) {
       state.isLoading = true;
       state.error = null;
     },
-    createUserSuccess(state, action: PayloadAction<IUser>) {
+    registerUserSuccess(state, action: PayloadAction<IUser>) {
       state.isLoading = false;
       state.user = action.payload;
     },
@@ -38,7 +38,7 @@ export const authSlice = createSlice({
     setUser(state, action: PayloadAction<IUser>) {
       state.user = action.payload;
     },
-    createUserFailure(state, action: PayloadAction<string>) {
+    registerUserFailure(state, action: PayloadAction<string>) {
       state.isLoading = false;
       state.error = action.payload;
     },

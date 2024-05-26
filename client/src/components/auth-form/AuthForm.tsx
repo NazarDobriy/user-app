@@ -7,8 +7,8 @@ import Button from "components/UI/button/Button";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
 import {
   clearUser,
-  createUser,
-  loginUser
+  loginUser,
+  registerUser
 } from "store/reducers/auth/ActionCreators";
 import { IUser } from "models/User";
 import { RouteNames } from "router/index";
@@ -41,21 +41,26 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin = true }) => {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     let currentUser: IUser = {
-      email: data.email,
-      password: data.password
+      user: {
+        email: data.email,
+        password: data.password
+      }
     };
 
     if (data.username) {
       currentUser = {
         ...currentUser,
-        username: data.username
+        user: {
+          ...currentUser.user,
+          username: data.username
+        }
       };
     }
 
     if (isLogin) {
       dispatch(loginUser(currentUser));
     } else {
-      dispatch(createUser(currentUser));
+      dispatch(registerUser(currentUser));
     }
   };
 

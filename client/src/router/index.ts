@@ -2,6 +2,7 @@ import { ComponentType, lazy } from "react";
 
 const HomePage = lazy(() => import('pages/home/Home'));
 const AuthPage = lazy(() => import('pages/auth/Auth'));
+const DealsPage = lazy(() => import('pages/deals/Deals'));
 
 export interface IRoute {
   path: string;
@@ -11,13 +12,18 @@ export interface IRoute {
 export enum RouteNames {
   LOGIN = "/login",
   SIGN_UP = "/sign-up",
-  HOME = "/"
+  HOME = "/",
+  DEALS = "/user-deals"
 }
 
 export const authRoutes: IRoute[] = [
   {
     path: RouteNames.HOME,
     component: HomePage
+  },
+  {
+    path: RouteNames.DEALS,
+    component: DealsPage
   }
 ];
 
