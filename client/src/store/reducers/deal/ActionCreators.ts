@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
 
 import { dealSlice } from "./DealSlice";
-import { $host } from "http/index";
+import { $authHost } from "http/index";
 import { IDeal } from "models/Deal";
 import { AppDispatch } from "store/store";
 
@@ -10,8 +10,8 @@ const DEAL_API_PATH = "api/deal";
 export const getDeals = () => async (dispatch: AppDispatch) => {
   try {
     dispatch(dealSlice.actions.getDeals());
-    const response = await $host.get<IDeal[]>(DEAL_API_PATH);
-    dispatch(dealSlice.actions.getDealsSuccess(response.data));
+    const { data } = await $authHost.get<IDeal[]>(`${DEAL_API_PATH}/all`);
+    dispatch(dealSlice.actions.getDealsSuccess(data));
   } catch (error) {
     dispatch(
       dealSlice.actions.getDealsFailure(

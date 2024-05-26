@@ -11,6 +11,7 @@ const Navbar: FC = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
   const { isAuth, user } = useAppSelector((state) => state.authReducer);
+  const isDealsPage = pathname === RouteNames.DEALS;
   const isAuthPage = pathname === RouteNames.LOGIN || pathname === RouteNames.SIGN_UP;
 
   return (
@@ -18,13 +19,27 @@ const Navbar: FC = () => {
       className={classes.nav}
       style={{ justifyContent: isAuth ? "space-between" : "end" }}
     >
-      {isAuth && <div className={classes.title}>Hello, {user?.username}!</div>}
+      {isAuth && <div className={classes.title}>Hello, {user?.user.username}!</div>}
 
       {!isAuthPage &&
         (isAuth ? (
-          <Button clickHandler={() => dispatch(setIsAuth(false))}>
-            Sign out
-          </Button>
+          <section className={classes.btns}>
+            {isDealsPage ? (
+              <NavLink to={RouteNames.HOME}>
+              <Button>Home</Button>
+            </NavLink>
+            ) : (
+              <NavLink to={RouteNames.DEALS}>
+                <Button>Deals</Button>
+              </NavLink>
+            )}
+            <Button
+              isPrimary={false}
+              clickHandler={() => dispatch(setIsAuth(false))}
+            >
+              Sign out
+            </Button>
+          </section>
         ) : (
           <section className={classes.btns}>
             <NavLink to={RouteNames.LOGIN}>

@@ -1,29 +1,13 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { NavLink } from "react-router-dom";
 
 import classes from "./Home.module.css";
 import Button from "components/UI/button/Button";
 import { RouteNames } from "router/index";
-import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { getDeals } from "store/reducers/deal/ActionCreators";
-import DealCard from "components/deal-card/DealCard";
-import useErrorMessage from "hooks/error";
+import { useAppSelector } from "hooks/redux";
 
 const Home: FC = () => {
-  const dispatch = useAppDispatch();
   const { isAuth } = useAppSelector((state) => state.authReducer);
-  const { deals, error } = useAppSelector((state) => state.dealReducer);
-  const { setError } = useErrorMessage(null);
-
-  useEffect(() => {
-    dispatch(getDeals());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (error) {
-      setError(error);
-    }
-  }, [error, setError]);
 
   return (
     <section>
@@ -39,13 +23,6 @@ const Home: FC = () => {
             <Button>Get Started</Button>
           </NavLink>
         )}
-      </div>
-
-      <h3 className={classes.subtitle}>Open Deals</h3>
-      <div className={classes.deals}>
-        {deals.map((deal) => (
-          <DealCard key={deal.id} deal={deal}></DealCard>
-        ))}
       </div>
     </section>
   );
