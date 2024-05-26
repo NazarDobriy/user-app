@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 
-import { mockDeals } from './data/deal.mock';
-import { IDeal } from './types/deal.interface';
+import { Deal } from './deal.model';
 
 @Injectable()
 export class DealService {
-  getAll(): IDeal[] {
-    return mockDeals;
+  constructor(@InjectModel(Deal) private dealRepository: typeof Deal) {}
+
+  getAll(): Promise<Deal[]> {
+    const deals = this.dealRepository.findAll();
+    return deals;
   }
 }

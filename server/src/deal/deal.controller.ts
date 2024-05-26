@@ -1,8 +1,8 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 
 import { DealService } from './deal.service';
-import { IDeal } from './types/deal.interface';
 import { JwtAuthGuard } from 'src/guards/jwt-guard';
+import { Deal } from './deal.model';
 
 @Controller('deal')
 export class DealController {
@@ -10,7 +10,7 @@ export class DealController {
 
   @UseGuards(JwtAuthGuard)
   @Get('all')
-  getAll(): IDeal[] {
+  getAll(): Promise<Deal[]> {
     return this.dealService.getAll();
   }
 }

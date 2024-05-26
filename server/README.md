@@ -9,6 +9,8 @@ POSTGRES_USER=postgres
 POSTGRES_DB=user
 POSTGRES_PASSWORD=root
 POSTGRES_PORT=5432
+SECRET="just-secret-key"
+EXPIRE_JWT=86400
 ```
 
 - run the application with docker
