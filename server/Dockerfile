@@ -10,6 +10,4 @@ COPY . .
 
 RUN npm run build
 
-COPY public ./public
-
 CMD [ "npm", "run", "start:prod" ]
