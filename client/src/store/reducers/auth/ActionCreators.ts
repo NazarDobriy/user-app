@@ -18,20 +18,22 @@ export const setIsAuth = (isAuth: boolean) => (dispatch: AppDispatch) => {
   dispatch(authSlice.actions.setIsAuth(isAuth));
 };
 
-export const registerUser = ({ user }: IUser) => async (dispatch: AppDispatch) => {
+export const registerUser = (user: IUser) => async (dispatch: AppDispatch) => {
   try {
     dispatch(authSlice.actions.registerUser());
-    const { data } = await $host.post<IUser>(`${USER_AUTH_PATH}/register`, {
-      method: "POST",
-      ...user
-    });
+    const { data } = await $host.post<{ token: string }>(
+      `${USER_AUTH_PATH}/register`,
+      {
+        method: "POST",
+        ...user
+      }
+    );
 
     const token = data.token;
-  
-    if (token) {
-      localStorage.setItem('token', token)
-      dispatch(authSlice.actions.registerUserSuccess(jwtDecode(token)));
-    }
+    const decodedToken = jwtDecode<{ user: IUser }>(token);
+
+    localStorage.setItem("token", token);
+    dispatch(authSlice.actions.registerUserSuccess(decodedToken.user));
   } catch (error) {
     dispatch(
       authSlice.actions.registerUserFailure(
@@ -43,23 +45,25 @@ export const registerUser = ({ user }: IUser) => async (dispatch: AppDispatch) =
   }
 };
 
-export const loginUser = ({ user }: IUser) => async (dispatch: AppDispatch) => {
+export const loginUser = (user: IUser) => async (dispatch: AppDispatch) => {
   try {
     dispatch(authSlice.actions.loginUser());
-    const { data } = await $host.post<IUser>(`${USER_AUTH_PATH}/login`, {
-      method: "POST",
-      ...user
-    });
+    const { data } = await $host.post<{ token: string }>(
+      `${USER_AUTH_PATH}/login`,
+      {
+        method: "POST",
+        ...user
+      }
+    );
 
     const token = data.token;
-    
-    if (token) {
-      localStorage.setItem('token', token)
-      dispatch(authSlice.actions.loginUserSuccess(jwtDecode(token)));
+    const decodedToken = jwtDecode<{ user: IUser }>(token);
 
-      localStorage.setItem("isAuth", "true");
-      localStorage.setItem("user", JSON.stringify(jwtDecode(token)));
-    }
+    localStorage.setItem("token", token);
+    dispatch(authSlice.actions.loginUserSuccess(decodedToken.user));
+
+    localStorage.setItem("isAuth", "true");
+    localStorage.setItem("user", JSON.stringify(decodedToken.user));
   } catch (error) {
     dispatch(
       authSlice.actions.loginUserFailure(
@@ -73,8 +77,8 @@ export const loginUser = ({ user }: IUser) => async (dispatch: AppDispatch) => {
 
 export const clearUser = () => async (dispatch: AppDispatch) => {
   dispatch(authSlice.actions.clearUser());
-}
+};
 
 export const setUser = (user: IUser) => async (dispatch: AppDispatch) => {
   dispatch(authSlice.actions.setUser(user));
-}
+};

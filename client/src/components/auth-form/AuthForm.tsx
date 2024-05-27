@@ -41,19 +41,14 @@ const AuthForm: FC<AuthFormProps> = ({ isLogin = true }) => {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     let currentUser: IUser = {
-      user: {
-        email: data.email,
-        password: data.password
-      }
+      email: data.email,
+      password: data.password
     };
 
     if (data.username) {
       currentUser = {
         ...currentUser,
-        user: {
-          ...currentUser.user,
-          username: data.username
-        }
+        username: data.username
       };
     }
 

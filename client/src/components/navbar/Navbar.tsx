@@ -19,7 +19,7 @@ const Navbar: FC = () => {
       className={classes.nav}
       style={{ justifyContent: isAuth ? "space-between" : "end" }}
     >
-      {isAuth && <div className={classes.title}>Hello, {user?.user.username}!</div>}
+      {isAuth && <div className={classes.title}>Hello, {user?.username}!</div>}
 
       {!isAuthPage &&
         (isAuth ? (
