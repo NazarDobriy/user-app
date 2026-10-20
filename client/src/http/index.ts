@@ -1,6 +1,6 @@
 import axios, { InternalAxiosRequestConfig } from "axios";
 
-const baseURL = "https://user-app-production.up.railway.app/";
+const baseURL = "http://localhost:5000";
 
 const $host = axios.create({ baseURL });
 
